@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    restart: on-failure
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/var/www/html
+   # networks:
+    #  inception:
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wp-php
+    restart: on-failure
+    volumes:
+      - ./web:/var/www/html
+    #networks:
+     # inception:
+  maraidb:
+    build: requirements/mariadb/.
+    container_name: mariadb
+    restart: on-failure
+   # networks:
+  #    inception:
+      
+#networks:
+ # inception:
