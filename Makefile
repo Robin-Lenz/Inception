@@ -1,10 +1,11 @@
 NAME = inception
 
 all:
-	cd /home/robin/Inception-main/src && docker compose up --build
+	cd $$PWD/src && docker compose up --build
 	
-stop:
-	cd /home/robin/Inception-main/src && docker compose down
+down:
+	cd $$PWD/src && docker compose down
 	
-clean:
-	sudo rm -rf ./src/web
+clean: down
+	docker system prune -a -y
+	#sudo rm -rf ./src/web
