@@ -23,6 +23,8 @@ services:
     build: requirements/mariadb/.
     container_name: mariadb
     restart: on-failure
+    volumes:
+    - /home/rpodack/data:/var/lib/mysql
    # networks:
   #    inception:
       
