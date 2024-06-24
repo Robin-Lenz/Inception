@@ -17,6 +17,10 @@ sudo docker run --rm <Name>
 sudo docker compose up --build
 
 
+#access commandline of container
+docker exec -it <container_id_or_name> /bin/sh
+
+
 # copy config files from inside the container to the directory
 // copy configfile of wp-php to directory wordpress
 sudo docker cp wp-php:/etc/php/8.2/fpm/pool.d/www.conf ./inception/requirements/wordpress/.
