@@ -17,5 +17,3 @@ chmod 755 /var/www/html
 
 php-fpm8.2 -F
 
-#$(<"/run/secrets/wp_user")
-#$(<"/run/secrets/wp_user_password")

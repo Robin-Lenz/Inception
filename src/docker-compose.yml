@@ -3,6 +3,7 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
+    image: nginx:v1.0
     env_file:
       - .env
     restart: on-failure
