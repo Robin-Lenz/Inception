@@ -1,6 +1,9 @@
 FROM debian:bookworm
 
-RUN apt update && apt upgrade && apt install -y php-fpm php-mysqli curl
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update 
+#RUN apt upgrade
+RUN apt install -y php-fpm php-mysqli curl
 
 COPY www.conf /etc/php/8.2/fpm/pool.d/www.conf
 COPY install_wp.sh .

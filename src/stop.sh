@@ -2,7 +2,7 @@
 cd $PWD/src
 
 # Stop services in a specific order
-docker compose stop mariadb
 docker compose stop wordpress
+docker compose stop mariadb
 docker compose stop nginx
 

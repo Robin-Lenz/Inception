@@ -2,9 +2,11 @@ FROM debian:bookworm
 
 #"&""&" ensures that each command runs only if the previous command succeeds
 # install latest apt -y confirms always yes when prompted
-RUN apt update && apt upgrade && apt install -y \
-nginx \
-openssl
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update 
+#RUN apt upgrade
+RUN apt install -y nginx 
+RUN apt install -y openssl
 
 RUN mkdir /etc/nginx/ssl
 

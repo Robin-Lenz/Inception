@@ -1,6 +1,9 @@
 FROM debian:bookworm
 
-RUN apt update && apt upgrade && apt install -y mariadb-server
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update
+#RUN apt upgrade 
+RUN apt install -y mariadb-server
 
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/.
 COPY init.sql /etc/mysql/init.sql
