@@ -17,6 +17,7 @@ services:
   wordpress:
     build: requirements/wordpress/.
     container_name: wp-php
+    image: wp-php:v1.0
     env_file:
       - .env
     secrets:
@@ -27,12 +28,15 @@ services:
     restart: on-failure
     volumes:
       - /home/rpodack/data/wordpress:/var/www/html
+    expose:
+      - "9000"
     networks:
       inception:
 
   maraidb:
     build: requirements/mariadb/.
     container_name: mariadb
+    image: mariadb:v1.0
     env_file:
       - .env
     secrets:
@@ -41,6 +45,8 @@ services:
     restart: on-failure
     volumes:
     - /home/rpodack/data/mariadb:/var/lib/mysql
+    expose:
+      - "3306"
     networks:
       inception:
       
