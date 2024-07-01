@@ -44,5 +44,8 @@ docker volume rm $(docker volume ls -q)
 #delet all etworks
 docker network rm $(docker network ls -q)
 
+#check what's running including ports
+docker compose ps
+
 
 

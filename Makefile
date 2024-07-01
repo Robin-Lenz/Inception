@@ -1,20 +1,20 @@
 NAME = inception
 
 all:
-	cd $$PWD/src && docker compose up --build -d
+	cd $$PWD/srcs && docker compose up --build -d
 	
 down:
-	cd $$PWD/src && docker compose -f docker-compose.yml --env-file .env down
+	#sleep 10
+	cd $$PWD/srcs && docker compose down
 
-stop:
-	cd $$PWD/src && ./stop.sh
+re: fclean all
 	
 clean: down
-	docker system prune -a --volumes
-	#sudo rm -rf ./src/web
+	docker system prune --force -a --volumes
 	#sudo rm -rf /home/rpodack/data
 	
 fclean:
+	sleep 10
 	@docker stop $$(docker ps -qa)
 	@docker system prune --all --force --volumes
 	@docker network prune --force
