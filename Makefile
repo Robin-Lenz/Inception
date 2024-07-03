@@ -9,9 +9,14 @@ down:
 
 re: fclean all
 	
+rmvolumes:
+	#uncomment to delete persistance
+	docker volume rm mariadb
+	docker volume rm wordpress
+	
+
 clean: down
 	docker system prune --force -a --volumes
-	#sudo rm -rf /home/rpodack/data
 	
 fclean:
 	sleep 10
