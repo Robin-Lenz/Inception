@@ -1,51 +1,75 @@
 # inception
 
-# https://medium.com/@ssterdev/inception-guide-42-project-part-i-7e3af15eb671
+Notes
 
-# general useful commands
-// show all images
-sudo docker images
+    Ensure Docker and Docker Compose are installed on your VM.
+    Secure credentials and sensitive data using Docker secrets and environment variables.
 
-// build command for single docker ; -t <Name> tags the image with the name
-sudo docker build -f Dockerfile -t <Name> .
-#why is -f necessary here when Dockerfile is called Dockerfile ?
+This project sets up a Docker-based environment with NGINX, WordPress (with php-fpm), and MariaDB, designed to run on a Virtual Machine using Docker Compose.
 
-// run single image
-sudo docker run --rm <Name>
+Features
 
-# inception
+    NGINX: Serves as the reverse proxy with TLSv1.2 or TLSv1.3.
+    WordPress: Runs PHP-FPM without NGINX.
+    MariaDB: Provides the database for WordPress.
+    Volumes: Persistent storage for WordPress files and database.
+    Network: Docker network for inter-service communication.
 
-# https://medium.com/@ssterdev/inception-guide-42-project-part-i-7e3af15eb671
+Directory Structure
 
-# general useful commands
-// show all images
-sudo docker images
+plaintext
 
-// build command for single docker ; -t <Name> tags the image with the name
-sudo docker build -f Dockerfile -t <Name> .
-#why is -f necessary here when Dockerfile is called Dockerfile ?
+.
+├── Makefile
+├── secrets/
+│   ├── wp_user_password.txt
+│   ├── wp_user.txt
+│   ├── wp_admin_user.txt
+│   ├── wp_admin_password.txt
+│   ├── db_user.txt
+│   └── db_password.txt
+└── srcs/
+    ├── .env
+    ├── docker-compose.yml
+    └── requirements/
+        ├── mariadb/
+        │   ├── Dockerfile
+        │   └── .dockerignore
+        ├── nginx/
+        │   ├── Dockerfile
+        │   └── .dockerignore
+        └── wordpress/
+            ├── Dockerfile
+            └── .dockerignore
 
-// run single image
-sudo docker run --rm <Name>
+Setup
 
-//build and run docker compose
-sudo docker compose up --build
+    Clone the Repository:
 
+    sh
 
-#access commandline of container
-docker exec -it <container_id_or_name> /bin/sh
+    git clone git@github.com:Robin-Lenz/Inception.git Inception
+    cd Inception
 
-#delete all images
-docker rmi $(docker images -q)
+Build and Run Containers:
 
-#delete all volumes
-docker volume rm $(docker volume ls -q)
+sh
 
-#delet all etworks
-docker network rm $(docker network ls -q)
+    make
 
-#check what's running including ports
-docker compose ps
+Configuration
 
+    Environment Variables: Set in .env.
+    Secrets: Managed in the secrets/ directory.
+    Domain Name: Set in .env as DOMAIN_NAME.
 
+Access
 
+    NGINX: Access via https://login.42.fr (replace login with your 42 login).
+    WordPress: Available through NGINX.
+    MariaDB: Accessible internally.
+
+Notes
+
+    Ensure Docker and Docker Compose are installed on your VM.
+    Secure credentials and sensitive data using Docker secrets and environment variables.
