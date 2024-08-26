@@ -17,7 +17,7 @@
 ##
 
 server {
-	server_name rpodack.42.fr www.rpodack.42.fr;
+	server_name rpodack.42.fr;
 
 	# SSL configuration
 	 listen 443 ssl ;
